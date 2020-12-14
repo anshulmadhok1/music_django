@@ -1,0 +1,52 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/logistration.css' %}"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+
+</head>
+
+<body>
+{% include 'navbar.html' %}
+  <div class="container">
+
+
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Add Music Here!</h5>
+
+            <form class="form-signin" method="post" action="" enctype="multipart/form-data">
+                {% if success_msg %}
+                    <div class="alert alert-success">
+                         <strong>Success!</strong> {{ success_msg }}
+                    </div>
+                {% endif %}
+
+              <div class="form-label-group">
+                  {{ form.title.label }}
+                  {{ form.title }}
+              </div>
+
+              <div class="custom-file">
+                  {{ form.song }}
+                  <label class="custom-file-label">Choose file</label>
+              </div>
+
+              {% csrf_token %}
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" style="margin-top:12px">Upload</button>
+              <hr class="my-4">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

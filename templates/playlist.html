@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
+
+<title>untitled document</title>
+
+<link rel="stylesheet" href="screen.css" media="screen">
+
+<style media="screen">
+
+#parent {
+    display: flex;
+    background: #fff;
+    width: 800px;
+    margin: 0 auto;
+ }
+#leftdiv {
+    flex: none;
+    width: 18.75em;
+    padding: 1em;
+    border-right: 0.06em solid #999;
+    box-sizing: border-box;
+ }
+#rightdiv {
+    padding: 1em;
+ }
+@media screen and (max-width:30em) {
+#parent {
+    display: block;
+  }
+#leftdiv {
+    width: auto;
+    border-right: 0;
+    border-bottom: 0.06em solid #999;
+  }
+ }
+
+.audioPlayer{
+    height: 1.5em;
+}
+
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+
+</head>
+
+
+<body>
+
+{% include "playlist_nav.html" %}
+
+{% for object in playlist %}
+        <div id="parent">
+         <div id="leftdiv">
+          <p>
+            {{ object.title }}
+          </p>
+         </div>
+         <div id="rightdiv">
+          <p>
+        <audio class="audioPlayer" controls loop>
+          <source src="{{object.song.url}}" type="audio/mp3">
+          <source src="{{object.song.url}}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+          </p>
+         </div>
+        </div>
+    {% endfor %}
+</body>
+</html>
