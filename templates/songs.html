@@ -1,0 +1,105 @@
+{% load static %}
+<html>
+  <head>
+    <title>Home</title>
+
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,600,700%7CLato%7CKalam:300,400,700">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/audio-player.css' %}">
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+  </head>
+  <body>
+    <div class="ie-panel">
+      <a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="{% static 'img/ie8/warning_bar_0000_us.jpg' %}" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.">
+      </a>
+    </div>
+    <div class="preloader">
+      <div class="preloader-body">
+        <div class="cssload-bell">
+          <div class="cssload-circle">
+            <div class="cssload-inner"></div>
+          </div>
+          <div class="cssload-circle">
+            <div class="cssload-inner"></div>
+          </div>
+          <div class="cssload-circle">
+            <div class="cssload-inner"></div>
+          </div>
+          <div class="cssload-circle">
+            <div class="cssload-inner"></div>
+          </div>
+          <div class="cssload-circle">
+            <div class="cssload-inner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+<audio controls>
+              <source src="{{object.song.url}}" type="audio/mp3">
+              <source src="{{object.song.url}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+    <div class="page">
+      <!-- Section-->
+      <section class="section section-xxl bg-default">
+        <div class="container">
+            {% if playlist %}
+                {% for object in playlist %}
+
+          <div class="item">
+              <div class="player-list">
+                <div class="jp-player-init">
+                  <div class="jp-jplayer"></div>
+                  <div class="jp-audio jp-audio-0" role="application" aria-label="media player">
+                    <ul class="jp-player-list">
+                      <li class="jp-player-list-item" data-jp-title="{{ object.title }}" data-jp-artist="" data-jp-mp3="{{object.song.url}}"></li>
+                    </ul>
+                    <div class="jp-interface">
+                      <div class="jp-button jp-controls">
+                        <button class="jp-btn jp-play" role="button" tabindex="0">play</button>
+                      </div>
+                      <div class="jp-playlist">
+                        <ul>
+                          <li> </li>
+                        </ul>
+                      </div>
+                      <div class="jp-time-rail">
+                        <div class="jp-progress">
+                          <div class="jp-seek-bar">
+                            <div class="jp-play-bar"></div>
+                          </div>
+                          <div class="jp-time-wrapper">
+                            <div class="jp-duration"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="jp-no-solution"><span>Update Required</span>           To play the media you will need to either update your browser to a recent version or update your<a href="http://get.adobe.com/flashplayer/" target="_blank"> Flash plugin</a>.</div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+                {% endfor %}
+
+            {% endif %}
+        </div>
+      </section>
+
+    </div>
+
+
+
+    <script src="{% static 'js/core.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>
